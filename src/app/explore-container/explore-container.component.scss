@@ -1,27 +1,30 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.containerEjercicio {
+  max-width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.detalleEjercicio {
+  display: grid;
+ 
+  margin-bottom: 10px;
+  grid-template-columns: 
+    repeat(
+      auto-fit,
+      minmax(10px,1fr)
+    );
+    gap: 5px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.detalleEjercicio label, .detalleEjercicio input {
+  display: grid;
+  margin-right: 10px;
 }
 
-#container a {
-  text-decoration: none;
+.agregar-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
