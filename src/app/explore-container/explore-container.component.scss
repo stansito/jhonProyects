@@ -1,30 +1,33 @@
-.containerEjercicio {
-  max-width: 100%;
-  padding: 15px;
-  box-sizing: border-box;
+/* Estilos para el contenedor del input */
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
 }
 
-.detalleEjercicio {
-  display: grid;
- 
-  margin-bottom: 10px;
-  grid-template-columns: 
-    repeat(
-      auto-fit,
-      minmax(10px,1fr)
-    );
-    gap: 5px;
-}
-
-.detalleEjercicio label, .detalleEjercicio input {
-  display: grid;
-  margin-right: 10px;
-}
-
-.agregar-btn {
-  background-color: #007bff;
-  color: #fff;
+/* Estilos para el input */
+.input-container input {
+  width: 100%;
+  padding: 8px 0;
   border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+  border-bottom: 1px solid #ccc; /* Línea inferior */
+  font-size: 16px;
+  color: #333; /* Color del texto del input */
+}
+
+/* Estilos para la etiqueta flotante */
+.input-container label {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  pointer-events: none;
+  transition: 0.2s ease all;
+  color: #888; /* Color de la etiqueta */
+}
+
+/* Estilos para la etiqueta flotante cuando el input tiene contenido */
+.input-container input:not(:placeholder-shown) + label,
+.input-container input:focus + label {
+  top: -16px; /* Desplazar hacia arriba */
+  font-size: 12px; /* Tamaño de la etiqueta cuando está flotando */
+  color: #007bff; /* Color de la etiqueta cuando está flotando */
 }
