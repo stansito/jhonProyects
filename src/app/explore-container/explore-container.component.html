@@ -1,4 +1,31 @@
-<div class="input-container">
-  <input type="text" id="floating-input" />
-  <label for="floating-input">Floating Label</label>
-</div>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Modal Title
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <p>This is the content of the modal.</p>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Controller Modal</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-button expand="block" (click)="openModal()">Open</ion-button>
+    <ion-list *ngIf="dataEntries.length > 0">
+      <ion-item *ngFor="let entry of dataEntries; let i = index">
+        <ion-item>
+          <ion-input labelPlacement="stacked" label="Series" [(ngModel)]="entry.series" placeholder="0"></ion-input>
+          <ion-input labelPlacement="stacked" label="Reps" [(ngModel)]="entry.repeticiones" placeholder="0" ></ion-input>
+          <ion-input labelPlacement="stacked" label="Peso" [(ngModel)]="entry.peso" placeholder="0"></ion-input>
+      
+          <ion-button class= "editarEjercicio" (click)="editEntry(i)" aria-label="Favorite">
+            <ion-icon name="create-outline" aria-hidden="true"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-content>

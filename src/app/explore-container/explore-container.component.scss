@@ -1,33 +1,14 @@
-/* Estilos para el contenedor del input */
-.input-container {
-  position: relative;
-  margin-bottom: 20px;
+ion-icon {
+  font-size: 34px;
+ 
 }
 
-/* Estilos para el input */
-.input-container input {
-  width: 100%;
-  padding: 8px 0;
-  border: none;
-  border-bottom: 1px solid #ccc; /* Línea inferior */
-  font-size: 16px;
-  color: #333; /* Color del texto del input */
+ion-icon {
+  color: rgb(252, 252, 252);
 }
 
-/* Estilos para la etiqueta flotante */
-.input-container label {
-  position: absolute;
-  top: 8px;
-  left: 0;
-  pointer-events: none;
-  transition: 0.2s ease all;
-  color: #888; /* Color de la etiqueta */
-}
 
-/* Estilos para la etiqueta flotante cuando el input tiene contenido */
-.input-container input:not(:placeholder-shown) + label,
-.input-container input:focus + label {
-  top: -16px; /* Desplazar hacia arriba */
-  font-size: 12px; /* Tamaño de la etiqueta cuando está flotando */
-  color: #007bff; /* Color de la etiqueta cuando está flotando */
+.editarEjercicio {
+  --background:transparent;
+  --background-hover: #eeff00;  
 }
