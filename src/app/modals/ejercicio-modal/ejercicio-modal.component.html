@@ -1,18 +1,61 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      <ion-button color="medium" (click)="cancel()">Cancelar</ion-button>
     </ion-buttons>
-    <ion-title>Welcome</ion-title>
+    <ion-title>EJERCICIO</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+      <ion-button (click)="confirm()" [strong]="true">Agregar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-input labelPlacement="stacked" label="Series" [(ngModel)]="series" placeholder="0"></ion-input>
-    <ion-input labelPlacement="stacked" label="Reps" [(ngModel)]="repeticiones" placeholder="0"></ion-input>
-    <ion-input labelPlacement="stacked" label="Peso" [(ngModel)]="peso" placeholder="0"></ion-input>
-  </ion-item>
+  <ion-grid>
+    <!-- Primera fila -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-list [inset]="true">
+          <ion-item [button]="true" [detail]="false" id="select-exercices">
+            <ion-label >Ejercicio</ion-label>
+           <ion-input readonly [(ngModel)]="ejercicio" slot="end" id="selected-exercices"></ion-input>
+           <!--<ion-select id="selected-exercices"
+                [(ngModel)]="ejercicio"
+                interface="popover"
+                toggleIcon="add"
+                expandedIcon="remove"
+                aria-label="ejercicios"
+            
+                slot="end"
+              ></ion-select>--> 
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  <!-- Modal para seleccionar ejercicios -->
+  <ion-modal trigger="select-exercices" #modal>
+    <ng-template>
+      <app-items-ejercicio-modal
+        class="ion-page"
+        title="Ejercicio Item"
+        [items]="exercices"
+        [selectedItems]="ejercicio"
+        (selectionChange)="exerciceSelectionChanged($event)"
+        (selectionCancel)="modal.dismiss()"
+      ></app-items-ejercicio-modal>
+    </ng-template>
+  </ion-modal>
+    
+    <!-- Segunda fila -->
+    <ion-row>
+      <ion-col size="4">
+        <ion-input labelPlacement="stacked" label="Series" [(ngModel)]="series" placeholder="0"></ion-input>
+      </ion-col>
+      <ion-col size="4">
+        <ion-input labelPlacement="stacked" label="Reps" [(ngModel)]="repeticiones" placeholder="0"></ion-input>
+      </ion-col>
+      <ion-col size="4">
+        <ion-input labelPlacement="stacked" label="Peso" [(ngModel)]="peso" placeholder="0"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

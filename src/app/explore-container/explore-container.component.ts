@@ -8,7 +8,7 @@ import {EjercicioModalComponent} from '../modals/ejercicio-modal/ejercicio-modal
   styleUrls: ['./explore-container.component.scss'],
 })
 export class ExploreContainerComponent {
-  dataEntries: { series: string, repeticiones: string, peso: string }[] = [];
+  dataEntries: { ejercicio : string ,series: string, repeticiones: string, peso: string }[] = [];
   //series = 'This modal example uses the modalController to present and dismiss modals.';
 
   constructor(private modalCtrl: ModalController) {
@@ -32,6 +32,7 @@ export class ExploreContainerComponent {
     const modal = await this.modalCtrl.create({
       component: EjercicioModalComponent,
       componentProps: {
+        ejercicio: this.dataEntries[index].ejercicio,
         series: this.dataEntries[index].series,
         repeticiones: this.dataEntries[index].repeticiones,
         peso: this.dataEntries[index].peso
