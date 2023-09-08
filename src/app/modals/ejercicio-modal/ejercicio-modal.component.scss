@@ -31,4 +31,8 @@
     font-size: 12px; /* Tamaño de la etiqueta cuando está flotando */
     color: #007bff; /* Color de la etiqueta cuando está flotando */
   }
-  
+  ion-button{
+    --padding-start: 0;
+    --padding-end: 0;
+
+  }

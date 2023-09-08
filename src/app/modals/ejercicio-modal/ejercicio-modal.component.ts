@@ -5,6 +5,7 @@ import { ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { Item } from '../types';
 
+
 @Component({
   selector: 'app-ejercicio-modal',
   templateUrl: './ejercicio-modal.component.html',
@@ -15,16 +16,18 @@ export class EjercicioModalComponent  {
   @ViewChild('modal', { static: true }) modal!: IonModal;
   
   ejercicio: string;
-  series: string;
-  repeticiones: string;
-  peso : string
+  series: number;
+  repeticiones: number;
+  peso : number
 
   constructor(private modalCtrl: ModalController) {
     this.ejercicio = '';
-    this.series= '';
-    this.repeticiones = ''
-    this.peso = '';
+    this.series= 0;
+    this.repeticiones = 0;
+    this.peso = 0;
   }
+
+
 
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
@@ -36,7 +39,7 @@ export class EjercicioModalComponent  {
 
 
   selectedExercicesText = '0 Items';
-  selectedExercices: string = '';
+  selectedExercices: number = 0;
 
   exercices: Item[] = [
     { text: 'Sentadillas', value: 'sentadilla' },
@@ -62,12 +65,32 @@ export class EjercicioModalComponent  {
 
   exerciceSelectionChanged(exercices: string) {
     this.ejercicio = exercices;
-    this.selectedExercicesText = this.formatData(this.selectedExercices);
+  
     this.modalCtrl.dismiss();
   }
+  // Incrementar el valor de la propiedad especificada en la entrada
+  increaseValue(property: string) {
+    if (property === 'series') {
+      this.series++;
+    } else if (property === 'repeticiones') {
+      this.repeticiones++;
+    } else if (property === 'peso') {
+      this.peso++;
+    }
+  }
 
+  // Decrementar el valor de la propiedad especificada en la entrada
+  decreaseValue(property: string) {
+    if (property === 'series' && this.series > 0) {
+      this.series--;
+    } else if (property === 'repeticiones' && this.repeticiones > 0) {
+      this.repeticiones--;
+    } else if (property === 'peso' && this.peso > 0) {
+      this.peso--;
+    }
+  }
 
-
+    
 }
 
 
