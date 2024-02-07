@@ -7,6 +7,10 @@ ion-icon {
   color: rgb(252, 252, 252);
 }
 
+ion-button{
+  --padding-start: 0;
+  --padding-end: 0;
+}
 
 .editarEjercicio {
   --background:transparent;

@@ -56,7 +56,7 @@ export class ItemsEjercicioModalComponent {
     }
 
     // Confirmar automáticamente los cambios al seleccionar un elemento
-    this.confirmChanges();
+    this.confirmChanges(); 
   }
 
   isItemSelected(item: Item): boolean {
