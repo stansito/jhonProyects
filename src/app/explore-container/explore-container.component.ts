@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import {EjercicioModalComponent} from '../modals/ejercicio-modal/ejercicio-modal.component'
 import { Storage } from '@ionic/storage-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-explore-container',
@@ -15,10 +16,21 @@ export class ExploreContainerComponent {
   //series = 'This modal example uses the modalController to present and dismiss modals.';
  
 
-  constructor(private modalCtrl: ModalController, private storage: Storage) {
+  constructor(private modalCtrl: ModalController, private storage: Storage, private router: Router) {
     this.loadStoredData();
   }
-
+  ionViewDidEnter(){
+    console.log('ionViewDidEnter de RutinaComponentComponent');
+  }
+  ionViewWillEnter(){
+    console.log('ionViewWillEnter de RutinaComponentComponent');
+  }
+  ionViewWillLeave(){
+    console.log('ionViewWillLeave de RutinaComponentComponent');
+  }
+  ionViewDidLeave(){
+    console.log('ionViewDidLeave de RutinaComponentComponent');
+  }
   async loadStoredData() {
     const storage = await this.storage.create(); // Crear la base de datos
     const storedData = await storage.get('dataEntries');
@@ -75,10 +87,20 @@ export class ExploreContainerComponent {
       entry[property]--;
     }
   }
-  createRutina() {
-    const rutinaEntries = this.dataEntries.filter(entry => entry.rutina);
+    createRutina() {
+    const rutinaEntries = this.dataEntries.filter(entry => entry.ejercicio);
     // Lógica adicional para manejar la nueva rutinaEntries según tus necesidades
     console.log('Nueva Rutina:', rutinaEntries);
+  
+    // Guardar la rutina en algún servicio o en el almacenamiento local
+    // Esto es solo un ejemplo, ajusta según tu necesidad
+    this.storage.set('rutinaActual', rutinaEntries);
+  
+    // Navegar a la página de la rutina
+    this.router.navigate(['/tabs/rutina']).then(() => {
+      // Otro código que deseas ejecutar después de la navegación
+      console.log('entra');
+    });
   }
   toggleRutina(entry: any) {
     entry.rutina = !entry.rutina;

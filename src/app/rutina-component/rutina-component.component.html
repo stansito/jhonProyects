@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Rutina Detalles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="rutinaEntries.length > 0">
+    <ion-item *ngFor="let entry of rutinaEntries; let i = index">
+      <ion-label>{{ entry.ejercicio }}</ion-label>
+
+      <ion-list *ngIf="entry.seriesList && entry.seriesList.length > 0">
+        <ion-item *ngFor="let serie of entry.seriesList; let j = index">
+          <ion-label>No Serie: {{ serie.numeroSerie }}, Repeticiones: {{ serie.repeticiones }}, Peso: {{ serie.peso }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+  </ion-list>
+</ion-content>
