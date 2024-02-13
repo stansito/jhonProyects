@@ -12,7 +12,8 @@
     
     <ion-list *ngIf="dataEntries.length > 0">
       <ion-item *ngFor="let entry of dataEntries; let i = index">
-        <ion-checkbox slot="start" [(ngModel)]="entry.rutina" (ionChange)="toggleRutina(entry)"></ion-checkbox>
+
+        <ion-checkbox aria-label="Label" [(ngModel)]="entry.rutina" (ionChange)="toggleRutina(entry)"></ion-checkbox>
         <ion-label>{{ entry.ejercicio }}</ion-label>
     
         <ion-list *ngIf="entry.seriesList && entry.seriesList.length > 0">

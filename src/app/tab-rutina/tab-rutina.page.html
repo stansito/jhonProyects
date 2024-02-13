@@ -1,7 +1,8 @@
+<!-- tab-rutina.page.html -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Rutina
+      Rutinas
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,8 +13,6 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
- 
-<!-- tab-rutina.page.html -->
-<app-rutina-component name="Rutina Page"></app-rutina-component>
-
+  <ion-button expand="block" (click)="_agregarRutina()">Agregar Rutina</ion-button>
+  <ion-button expand="block" routerLink="/tabs/rutina/ver-rutina">Ver Rutina</ion-button>
 </ion-content>

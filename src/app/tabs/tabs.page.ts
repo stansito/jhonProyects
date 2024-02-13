@@ -8,15 +8,18 @@ import { IonRouterOutlet, IonTabs } from '@ionic/angular'
 })
 export class TabsPage {
   @ViewChild(IonTabs) tabs!: IonTabs;
-
+  private activeTab?: HTMLElement;
   constructor() {}
 
-  tabChange() {
+  tabChange(tabsRef: IonTabs) {
+    if (tabsRef.outlet.activatedView != null) {
+      this.activeTab = tabsRef.outlet.activatedView.element;
+      console.log('Cambiaste de pestaña:', this.activeTab);
+    }
     const activeTab = this.tabs.getSelected();
     // Lógica a realizar cuando cambias entre pestañas
     console.log('Cambiaste de pestaña:', activeTab);
   }
-
   ionViewWillLeave() {
     this.propagateToActiveTab('ionViewWillLeave');
   }
@@ -34,11 +37,10 @@ export class TabsPage {
   }
   
   private propagateToActiveTab(eventName: string) {    
-    if (this.tabs.outlet && this.tabs.outlet.activatedView) {
-      const activeTab = this.tabs.outlet.activatedView.element;
-      if (activeTab) {
-        activeTab.dispatchEvent(new CustomEvent(eventName));
-      }
+    if (this.activeTab) {
+      this.activeTab.dispatchEvent(new CustomEvent(eventName));
     }
   }
+ 
+  
 }
