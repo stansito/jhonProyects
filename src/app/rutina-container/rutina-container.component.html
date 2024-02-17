@@ -1,0 +1,61 @@
+<ion-content color="light" >
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Ejercicios</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content color="light" class="ion-padding">
+    <!-- Crea una plantilla de una rutina la cual solo tendra el nombre de la rutina-->
+    <ion-button expand="block" (click)="crearNuevaRutina()">Crear Nueva Rutina</ion-button>
+    
+    <!-- Muestra la información de la rutina solo si hay una rutina seleccionada -->
+
+      <ion-list [inset]="true" *ngIf="rutina.nombreRutina">
+        <ion-item-sliding>
+          <ion-item-options side="start">
+            <ion-item-option color="success" expandable>Archive</ion-item-option>
+          </ion-item-options>
+
+          <ion-item [button]="true" (click)="editarEjercicio(index)">
+            <ion-icon color="success" slot="start" name="list-circle" size="large"></ion-icon>
+            <ion-label>Rutina: {{ rutina.nombreRutina }}</ion-label>
+            <div class="metadata-end-wrapper" slot="end">
+              <ion-note slot="end">{{ rutina.ejercicios.length }} ejercicios</ion-note>
+              <ion-icon color="medium" name="chevron-forward"></ion-icon>
+            </div>
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option id="editarNombreRutina" color="black" expandable>
+                <ion-icon name="create-outline" aria-hidden="true" (click)="editarNombreRutina()"></ion-icon>  
+            </ion-item-option>
+            <ion-item-option id="agregarEjercicioRutina"color= "black" expandable>
+              <ion-icon color="success"  name="add-circle-outline" (click) = "agregarEjercicioARutina(index)"></ion-icon> 
+          </ion-item-option>
+            <ion-item-option color="danger" expandable>Borrar</ion-item-option>
+          </ion-item-options>
+
+        </ion-item-sliding>
+      </ion-list>
+  
+        <!-- Mostrar los ejercicios asociados a la rutina en un grupo -->
+        <ion-list>
+          <ion-item *ngFor="let ejercicio of rutina.ejercicios; let index = index">
+            <ion-label>{{ ejercicio.nombreEjercicio }}</ion-label>
+            <!-- Mostrar las series del ejercicio si existen -->
+            <ion-list *ngIf="ejercicio.series && ejercicio.series.length > 0">
+              <ion-item *ngFor="let serie of ejercicio.series; let j = index">
+                <ion-label>No Serie: {{ serie.numeroSerie }}, Repeticiones: {{ serie.repeticiones }}, Peso: {{ serie.peso }}</ion-label>
+              </ion-item>
+            </ion-list>
+            <!-- Utiliza 'index' en lugar de 'i' -->
+            <ion-button class="editarEjercicioDeRutina" (click)="editarEjercicio(index)" aria-label="Editar">
+              <ion-icon name="create-outline" aria-hidden="true"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list> 
+
+
+  </ion-content>
+</ion-content>

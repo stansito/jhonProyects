@@ -1,10 +1,14 @@
 
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
 import { Item } from '../types';
 
+interface Serie {
+  numeroSerie: number;
+  repeticiones: number;
+  peso: number;
+}
 
 @Component({
   selector: 'app-ejercicio-modal',
@@ -12,28 +16,35 @@ import { Item } from '../types';
   styleUrls: ['./ejercicio-modal.component.scss'],
 })
 export class EjercicioModalComponent  {
-
+  @Input() rutinaActual: { ejercicio: string, seriesList: { numeroSerie: number, repeticiones: number, peso: number }[], rutina?: boolean }= {
+    ejercicio: '',
+    seriesList: [],
+    rutina: false
+  };
   @ViewChild(EjercicioModalComponent, { static: true }) ionModal!: EjercicioModalComponent;
 
-
-  
-  ejercicio: string;
-  numeroSerie: number;
-  repeticiones: number;
-  peso : number
+  ejercicio: string ='';
+  numeroSerie: number =0;
+  repeticiones: number =0;
+  peso : number = 0
   seriesList: { numeroSerie: number, repeticiones: number, peso: number }[] = [];
 
+  constructor(private modalCtrl: ModalController, private navParams: NavParams) {
+    // ... (código existente)
 
-  constructor(private modalCtrl: ModalController) {
-    this.ejercicio = '';
-    this.numeroSerie= 0;
-    this.repeticiones = 0;
-    this.peso = 0;
+    // Verifica si hay un ejercicio actual enviado como parámetro
+    if (this.navParams.get('rutinaActual')) {
+      const rutinaActual = this.navParams.get('rutinaActual');
+      this.ejercicio = rutinaActual.nombreEjercicio;
+      this.seriesList = rutinaActual.series.map((serie: Serie) => ({ ...serie }));
+    }else{
+      this.ejercicio = ''; // Asigna el valor que desees como predeterminado
+      this.seriesList = [
+      { numeroSerie: 0, repeticiones: 0, peso: 0 }, // Valores predeterminados para la primera serie
+        ]
+      }
+  }
 
-    this.seriesList = [
-      { numeroSerie: 0, repeticiones: 0, peso: 0 }, // Serie vacía inicial
-    ];
-  } 
 
   // Declara nuevaSerie como una propiedad del componente
   nuevaSerie: { numeroSerie: number; repeticiones: number; peso: number } = {
@@ -47,7 +58,7 @@ export class EjercicioModalComponent  {
   }
 
   confirm() {
-    return this.modalCtrl.dismiss({ ejercicio: this.ejercicio, seriesList: this.seriesList }, 'confirm');
+    this.modalCtrl.dismiss({ ejercicio: this.ejercicio, series: this.seriesList }, 'confirm');
   }
   
 

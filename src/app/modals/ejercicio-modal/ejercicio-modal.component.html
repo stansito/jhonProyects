@@ -9,95 +9,93 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
   <ion-grid>
+
     <!-- Primera fila -->
     <ion-row>
       <ion-col size="12">
         <ion-list [inset]="true">
           <ion-item [button]="true" [detail]="false" id="select-exercices">
-            <ion-label >Ejercicio</ion-label>
-           <ion-input readonly [(ngModel)]="ejercicio" slot="end" id="selected-exercices"></ion-input>
+            <ion-label>Ejercicio</ion-label>
+            <ion-input readonly [(ngModel)]="ejercicio" slot="end" id="selected-exercices"></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
-  <!-- Modal para seleccionar ejercicios -->
-  <ion-modal trigger="select-exercices" #modal>
-    <ng-template>
-      <app-items-ejercicio-modal
-        class="ion-page"
-        title="Ejercicio Item"
-        [items]="exercices"
-        [selectedItems]="ejercicio"
-        (selectionChange)="exerciceSelectionChanged($event)"
-        (selectionCancel)="modal.dismiss()"
-      ></app-items-ejercicio-modal>
-    </ng-template>
-  </ion-modal>
-    
+
+    <!-- Modal para seleccionar ejercicios -->
+    <ion-modal trigger="select-exercices" #modal>
+      <ng-template>
+        <app-items-ejercicio-modal
+          class="ion-page"
+          title="Ejercicio Item"
+          [items]="exercices"
+          [selectedItems]="ejercicio"
+          (selectionChange)="exerciceSelectionChanged($event)"
+          (selectionCancel)="modal.dismiss()"
+        ></app-items-ejercicio-modal>
+      </ng-template>
+    </ion-modal>
+
     <!-- Segunda fila -->
     <ion-list>
       <!-- Utiliza *ngFor para repetir la estructura por cada serie en seriesList -->
       <ion-item *ngFor="let serie of seriesList; let i = index">
         <ion-row>
+
+          <!-- No Serie -->
           <ion-col size="2">
             <ion-input labelPlacement="stacked" label="No Serie" [(ngModel)]="serie.numeroSerie" placeholder="0"></ion-input>
           </ion-col>
           <ion-col size="1">
-            <ion-row>
-              <ion-button (click)="increaseValue('numeroSerie', i)" class="boton-incrementar">
-                <ion-icon size="small" name="chevron-up-outline"></ion-icon>
-              </ion-button>
-            </ion-row>
-            <ion-row>
-              <ion-button (click)="decreaseValue('numeroSerie', i)" class="boton-incrementar">
-                <ion-icon size="small" name="chevron-down-outline"></ion-icon>
-              </ion-button>
-            </ion-row>
+            <ion-button (click)="increaseValue('numeroSerie', i)" class="boton-incrementar">
+              <ion-icon size="small" name="chevron-up-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="decreaseValue('numeroSerie', i)" class="boton-incrementar">
+              <ion-icon size="small" name="chevron-down-outline"></ion-icon>
+            </ion-button>
           </ion-col>
-    
+
+          <!-- Repeticiones -->
           <ion-col size="2">
             <ion-input labelPlacement="stacked" label="Reps" [(ngModel)]="serie.repeticiones" placeholder="0"></ion-input>
           </ion-col>
-    
           <ion-col size="1">
-            <ion-row>
-              <ion-button (click)="increaseValue('repeticiones', i)" class="boton-incrementar">
-                <ion-icon size="small" name="chevron-up-outline"></ion-icon>
-              </ion-button>
-            </ion-row>
-            <ion-row>
-              <ion-button (click)="decreaseValue('repeticiones', i)" class="boton-incrementar">
-                <ion-icon size="small" name="chevron-down-outline"></ion-icon>
-              </ion-button>
-            </ion-row>
+            <ion-button (click)="increaseValue('repeticiones', i)" class="boton-incrementar">
+              <ion-icon size="small" name="chevron-up-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="decreaseValue('repeticiones', i)" class="boton-incrementar">
+              <ion-icon size="small" name="chevron-down-outline"></ion-icon>
+            </ion-button>
           </ion-col>
-    
+
+          <!-- Peso -->
           <ion-col size="2">
             <ion-input labelPlacement="stacked" label="Peso" [(ngModel)]="serie.peso" placeholder="0"></ion-input>
           </ion-col>
-    
           <ion-col size="1">
-            <ion-row>
-              <ion-button (click)="increaseValue('peso', i)" class="boton-incrementar">
-                <ion-icon size="small" name="chevron-up-outline"></ion-icon>
-              </ion-button>
-            </ion-row>
-            <ion-row>
-            
-              <ion-button (click)="decreaseValue('peso', i)" class="boton-incrementar">
-                <ion-icon size="small" name="chevron-down-outline"></ion-icon>
-              </ion-button>
-            </ion-row>
+            <ion-button (click)="increaseValue('peso', i)" class="boton-incrementar">
+              <ion-icon size="small" name="chevron-up-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="decreaseValue('peso', i)" class="boton-incrementar">
+              <ion-icon size="small" name="chevron-down-outline"></ion-icon>
+            </ion-button>
           </ion-col>
+
         </ion-row>
       </ion-item>
     </ion-list>
-    <ion-col size="2">
-      <ion-button (click)="agregarSerie()" class="boton-incrementar">
-        Agregar Serie
-      </ion-button>
-    </ion-col>
+
+    <!-- Agregar Serie Button -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="agregarSerie()" class="boton-incrementar" expand="full">
+          Agregar Serie
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
 </ion-content>
